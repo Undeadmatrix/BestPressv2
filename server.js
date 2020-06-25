@@ -1,32 +1,29 @@
 const express = require("express");
-const session = require("express-session");
 const passport = require("./config/passport");
-
+const mongoose = require("mongoose");
+const controllers = require("./controllers");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
-var db = require("./models");
-
+// Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(controllers);
 
-app.use(express.static("public"));
-
-const exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
+// Set up passport
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./controllers/html-routes.js")(app);
-require("./controllers/api-routes.js")(app);
-require("./controllers/post-api-routes.js")(app);
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
 
-db.sequelize.sync().then(function() {
-    app.listen(PORT, function() {
-      console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-    });
- });
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
