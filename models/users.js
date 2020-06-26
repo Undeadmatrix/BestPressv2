@@ -14,9 +14,9 @@ const userSchema = new Schema({
     }],
     dateCreated: Date,
     savedFiles:[{}],
-    favoritePosts: [ postId ],
-    avatarImage: [ imageId ],
-    jumboImg: [ jumboId ],
+    favoritePosts: [],
+    avatarImage: [],
+    jumboImg: [],
     profile: {
         job: String,
         location: String,
