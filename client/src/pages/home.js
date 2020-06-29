@@ -7,6 +7,27 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 
 function Home() {
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        loadPosts()
+      }, [])
+
+      function loadPosts() {
+        API.getPosts()
+          .then(res => 
+            setPosts(res.data)
+          )
+          .catch(err => console.log(err));
+      };
+
+      function deletePost(id) {
+        API.deletePost(id)
+          .then(res => loadPosts())
+          .catch(err => console.log(err));
+      }
+
+
     return (
         <Container fluid>
             <Row>
