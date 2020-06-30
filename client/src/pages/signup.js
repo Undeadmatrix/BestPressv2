@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-//import Jumbotron from "../components/Jumbotron";
-//import API from "../utils/API";
-//import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-//import { List, ListItem } from "../components/List";
+import Nav from "../components/Nav";
 import "./css/signup.css";
 
 class Form extends Component {
@@ -46,7 +43,7 @@ class Form extends Component {
         `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
       );
     } else {
-      alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
+        window.location.replace("/home");
     }
 
     this.setState({
@@ -61,11 +58,9 @@ class Form extends Component {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
         <Container>
+            <Nav />
             <Row>
                 <Col size="md-6 sm-12">
-                        <p>
-                            Hello {this.state.firstName} {this.state.lastName}
-                        </p>
                         <form className="form">
                         <h3>First Name</h3>
                         <input
