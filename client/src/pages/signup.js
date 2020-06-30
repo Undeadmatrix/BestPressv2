@@ -15,6 +15,11 @@ class Form extends Component {
     password: ""
   };
 
+  validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
   handleInputChange = (event) => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -34,6 +39,8 @@ class Form extends Component {
     event.preventDefault();
     if (!this.state.firstName || !this.state.lastName) {
       alert("Fill out your first and last name please!");
+    } else if(!this.state.email || !this.validateEmail(this.state.email)) {
+        alert("Please include a valid email");
     } else if (this.state.password.length < 6) {
       alert(
         `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
@@ -55,12 +62,12 @@ class Form extends Component {
     return (
         <Container>
             <Row>
-                <Col size="md-6">
-                    <div>
+                <Col size="md-6 sm-12">
                         <p>
                             Hello {this.state.firstName} {this.state.lastName}
                         </p>
                         <form className="form">
+                        <h3>First Name</h3>
                         <input
                             value={this.state.firstName}
                             name="firstName"
@@ -68,6 +75,7 @@ class Form extends Component {
                             type="text"
                             placeholder="First Name"
                         />
+                        <h3>Last Name</h3>
                         <input
                             value={this.state.lastName}
                             name="lastName"
@@ -75,7 +83,7 @@ class Form extends Component {
                             type="text"
                             placeholder="Last Name"
                         />
-
+                        <h3>Email</h3>
                         <input
                             value={this.state.email}
                             name="email"
@@ -83,6 +91,7 @@ class Form extends Component {
                             type="text"
                             placeholder="Email"
                         />
+                        <h3>Password</h3>
                         <input
                             value={this.state.password}
                             name="password"
@@ -91,8 +100,7 @@ class Form extends Component {
                             placeholder="Password"
                         />
                         <button onClick={this.handleFormSubmit}>Submit</button>
-                        </form>
-                    </div>
+                    </form>
                 </Col>
             </Row>
         </Container>
