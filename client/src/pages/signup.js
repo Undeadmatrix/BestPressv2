@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+//import Jumbotron from "../components/Jumbotron";
+//import API from "../utils/API";
+//import { Link } from "react-router-dom";
+import { Col, Row, Container } from "../components/Grid";
+//import { List, ListItem } from "../components/List";
 import "./css/signup.css";
 
 class Form extends Component {
@@ -48,43 +53,49 @@ class Form extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
-        <p>
-          Hello {this.state.firstName} {this.state.lastName}
-        </p>
-        <form className="form">
-          <input
-            value={this.state.firstName}
-            name="firstName"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="First Name"
-          />
-          <input
-            value={this.state.lastName}
-            name="lastName"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Last Name"
-          />
+        <Container>
+            <Row>
+                <Col size="md-6">
+                    <div>
+                        <p>
+                            Hello {this.state.firstName} {this.state.lastName}
+                        </p>
+                        <form className="form">
+                        <input
+                            value={this.state.firstName}
+                            name="firstName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="First Name"
+                        />
+                        <input
+                            value={this.state.lastName}
+                            name="lastName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Last Name"
+                        />
 
-          <input
-            value={this.state.email}
-            name="email"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Email"
-          />
-          <input
-            value={this.state.password}
-            name="password"
-            onChange={this.handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
-        </form>
-      </div>
+                        <input
+                            value={this.state.email}
+                            name="email"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Email"
+                        />
+                        <input
+                            value={this.state.password}
+                            name="password"
+                            onChange={this.handleInputChange}
+                            type="password"
+                            placeholder="Password"
+                        />
+                        <button onClick={this.handleFormSubmit}>Submit</button>
+                        </form>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     );
   }
 }
