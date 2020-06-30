@@ -6,7 +6,7 @@ import Profile from "./pages/Profile";
 import Post from "./pages/Post";
 import Following from "./pages/Following";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // The app will not render correctly until you setup a Route component.
@@ -17,7 +17,6 @@ function App() {
   return (
     <Router>
     <div>
-      <Nav />
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Signup} />

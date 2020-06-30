@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Col, Row, Container } from "../components/Grid";
+import Nav from "../components/Nav";
 import "./css/signup.css";
 
 class Form extends Component {
@@ -29,6 +31,10 @@ class Form extends Component {
       alert(
         `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
       );
+    } else if(!this.state.email || !this.validateEmail(this.state.email)) {
+        alert("Please include a valid email");
+    } else{
+        window.location.replace("/home");
     }
     this.setState({
       email: "",
@@ -39,26 +45,32 @@ class Form extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
-        <p>Sign In</p>
-        <form className="form">
-          <input
-            value={this.state.email}
-            name="email"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Email"
-          />
-          <input
-            value={this.state.password}
-            name="password"
-            onChange={this.handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
-        </form>
-      </div>
+        <Container>
+        <Nav />
+        <Row>
+            <Col size="md-6 sm-12">
+                    <form className="form">
+                    <h3>Email</h3>
+                    <input
+                        value={this.state.email}
+                        name="email"
+                        onChange={this.handleInputChange}
+                        type="text"
+                        placeholder="Email"
+                    />
+                    <h3>Password</h3>
+                    <input
+                        value={this.state.password}
+                        name="password"
+                        onChange={this.handleInputChange}
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <button onClick={this.handleFormSubmit}>Submit</button>
+                </form>
+            </Col>
+        </Row>
+    </Container>
     );
   }
 }

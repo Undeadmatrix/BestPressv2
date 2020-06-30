@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Col, Row, Container } from "../components/Grid";
+import Nav from "../components/Nav";
 import "./css/signup.css";
 
 class Form extends Component {
@@ -9,6 +11,11 @@ class Form extends Component {
     email: "",
     password: ""
   };
+
+  validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
 
   handleInputChange = (event) => {
     // Getting the value and name of the input which triggered the change
@@ -29,12 +36,14 @@ class Form extends Component {
     event.preventDefault();
     if (!this.state.firstName || !this.state.lastName) {
       alert("Fill out your first and last name please!");
+    } else if(!this.state.email || !this.validateEmail(this.state.email)) {
+        alert("Please include a valid email");
     } else if (this.state.password.length < 6) {
       alert(
         `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
       );
     } else {
-      alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
+        window.location.replace("/home");
     }
 
     this.setState({
@@ -48,43 +57,48 @@ class Form extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
-        <p>
-          Hello {this.state.firstName} {this.state.lastName}
-        </p>
-        <form className="form">
-          <input
-            value={this.state.firstName}
-            name="firstName"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="First Name"
-          />
-          <input
-            value={this.state.lastName}
-            name="lastName"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Last Name"
-          />
-
-          <input
-            value={this.state.email}
-            name="email"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Email"
-          />
-          <input
-            value={this.state.password}
-            name="password"
-            onChange={this.handleInputChange}
-            type="password"
-            placeholder="Password"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
-        </form>
-      </div>
+        <Container>
+            <Nav />
+            <Row>
+                <Col size="md-6 sm-12">
+                        <form className="form">
+                        <h3>First Name</h3>
+                        <input
+                            value={this.state.firstName}
+                            name="firstName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="First Name"
+                        />
+                        <h3>Last Name</h3>
+                        <input
+                            value={this.state.lastName}
+                            name="lastName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Last Name"
+                        />
+                        <h3>Email</h3>
+                        <input
+                            value={this.state.email}
+                            name="email"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Email"
+                        />
+                        <h3>Password</h3>
+                        <input
+                            value={this.state.password}
+                            name="password"
+                            onChange={this.handleInputChange}
+                            type="password"
+                            placeholder="Password"
+                        />
+                        <button onClick={this.handleFormSubmit}>Submit</button>
+                    </form>
+                </Col>
+            </Row>
+        </Container>
     );
   }
 }
