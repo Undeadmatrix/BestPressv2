@@ -31,9 +31,9 @@ class Form extends Component {
       alert(
         `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
       );
-    } else if(!this.state.email || !this.validateEmail(this.state.email)) {
+    } /* else if(!this.state.email || !this.validateEmail(this.state.email)) {
         alert("Please include a valid email");
-    } else{
+    } */ else{
         window.location.replace("/home");
     }
     this.setState({
