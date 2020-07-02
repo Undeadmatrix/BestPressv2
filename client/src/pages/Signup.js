@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-
-class Signup extends Component {
 import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import "./css/signup.css";
+
+class Signup extends Component {
+
   // Setting the component's initial state
   state = {
     firstName: "",
@@ -70,6 +71,78 @@ import "./css/signup.css";
         console.log("signup error", err);
       });
   };
+
+  // -----------------------------------ChrisBranch--------------------------------------
+  /* handleFormSubmit = (event) => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault();
+    if (!this.state.firstName || !this.state.lastName) {
+      alert("Fill out your first and last name please!");
+    } else if(!this.state.email || !this.validateEmail(this.state.email)) {
+        alert("Please include a valid email");
+    } else if (this.state.password.length < 6) {
+      alert(
+        `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
+      );
+    } else {
+        window.location.replace("/home");
+    }
+
+    this.setState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    });
+  };
+
+  render() {
+    // Notice how each input has a `value`, `name`, and `onChange` prop
+    return (
+        <Container>
+            <Nav />
+            <Row>
+                <Col size="md-6 sm-12">
+                        <form className="form">
+                        <h3>First Name</h3>
+                        <input
+                            value={this.state.firstName}
+                            name="firstName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="First Name"
+                        />
+                        <h3>Last Name</h3>
+                        <input
+                            value={this.state.lastName}
+                            name="lastName"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Last Name"
+                        />
+                        <h3>Email</h3>
+                        <input
+                            value={this.state.email}
+                            name="email"
+                            onChange={this.handleInputChange}
+                            type="text"
+                            placeholder="Email"
+                        />
+                        <h3>Password</h3>
+                        <input
+                            value={this.state.password}
+                            name="password"
+                            onChange={this.handleInputChange}
+                            type="password"
+                            placeholder="Password"
+                        />
+                        <button onClick={this.handleFormSubmit}>Submit</button>
+                    </form>
+                </Col>
+            </Row>
+        </Container> */
+
+//-----------------------------------------------------------------------------------------
 
   render() {
     //redirects to login page
@@ -144,74 +217,6 @@ import "./css/signup.css";
           <a href="/login">Already have an account?</a>
         </div>
       </div>
-  /* handleFormSubmit = (event) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    if (!this.state.firstName || !this.state.lastName) {
-      alert("Fill out your first and last name please!");
-    } else if(!this.state.email || !this.validateEmail(this.state.email)) {
-        alert("Please include a valid email");
-    } else if (this.state.password.length < 6) {
-      alert(
-        `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
-      );
-    } else {
-        window.location.replace("/home");
-    }
-
-    this.setState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: ""
-    });
-  };
-
-  render() {
-    // Notice how each input has a `value`, `name`, and `onChange` prop
-    return (
-        <Container>
-            <Nav />
-            <Row>
-                <Col size="md-6 sm-12">
-                        <form className="form">
-                        <h3>First Name</h3>
-                        <input
-                            value={this.state.firstName}
-                            name="firstName"
-                            onChange={this.handleInputChange}
-                            type="text"
-                            placeholder="First Name"
-                        />
-                        <h3>Last Name</h3>
-                        <input
-                            value={this.state.lastName}
-                            name="lastName"
-                            onChange={this.handleInputChange}
-                            type="text"
-                            placeholder="Last Name"
-                        />
-                        <h3>Email</h3>
-                        <input
-                            value={this.state.email}
-                            name="email"
-                            onChange={this.handleInputChange}
-                            type="text"
-                            placeholder="Email"
-                        />
-                        <h3>Password</h3>
-                        <input
-                            value={this.state.password}
-                            name="password"
-                            onChange={this.handleInputChange}
-                            type="password"
-                            placeholder="Password"
-                        />
-                        <button onClick={this.handleFormSubmit}>Submit</button>
-                    </form>
-                </Col>
-            </Row>
-        </Container> */
     );
   }
 }
