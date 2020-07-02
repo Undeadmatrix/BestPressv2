@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const db = require("../models");
+const db = require("../../models");
 
 // This file empties the Users collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bestpress");
 
 const userSeed = [
   {
@@ -37,7 +37,7 @@ const userSeed = [
   {
     username: "ChrisUser",
     password: "password",
-    firstname: "Chistopher",
+    firstname: "Christopher",
     lastname: "Little",
     following: [
       {

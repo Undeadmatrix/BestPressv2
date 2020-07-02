@@ -8,6 +8,8 @@ import Following from "./pages/Following";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Cloudinary from "cloudinary-core";
+import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 
 // The app will not render correctly until you setup a Route component.
 // Refer to the Basic Example documentation if you need to.
@@ -15,21 +17,22 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Router>
-    <div>
-      <Nav />
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/" component={Signup} />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/" component={Profile} />
-        <Route exact path="/" component={Post} />
-        <Route exact path="/" component={Following} />
-        <Route exact path="*" component={NoMatch} />
-      </Switch>
-      
-    </div>
-    </Router>
+    <CloudinaryContext cloudName="bestpress">
+      <Router>
+          <Nav />
+          <Switch>
+            
+              <Route exact path="/Login" component={Login} />
+              <Route exact path="/Signup" component={Signup} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/Profile" component={Profile} />
+              <Route exact path="/Post" component={Post} />
+              <Route exact path="/Following" component={Following} />
+              <Route exact path="*" component={NoMatch} />
+            
+          </Switch>
+      </Router>
+    </CloudinaryContext>
   );
 }
 
