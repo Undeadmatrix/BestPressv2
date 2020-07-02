@@ -15,6 +15,7 @@ function Home() {
       }, [])
 
       function loadPosts() {
+          console.log("loadPosts Reached");
         API.getPosts()
           .then(res => 
             setPosts(res.data)
@@ -27,7 +28,6 @@ function Home() {
           .then(res => loadPosts())
           .catch(err => console.log(err));
       }
-
 
     return (
         <Container fluid>
