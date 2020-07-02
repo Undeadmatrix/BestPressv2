@@ -18,7 +18,8 @@ function Home() {
           console.log("loadPosts Reached");
         API.getPosts()
           .then(res => 
-            setPosts(res.data)
+            //setPosts(res.data)
+            console.log(res.data)
           )
           .catch(err => console.log(err));
       };
