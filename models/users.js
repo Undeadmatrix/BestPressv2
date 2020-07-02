@@ -8,9 +8,18 @@ const userSchema = new Schema({
     lastname: String,
     following: [{
         User: String,
+        id: {type: mongoose.Schema.Types.ObjectId }
     }],
     followers: [{
         User: String,
+        id: {type: mongoose.Schema.Types.ObjectId }
+    }],
+    posts: [{
+        title: String,
+        body: String,
+        postedBy: {type: mongoose.Schema.Types.ObjectId},
+        dateCreated: Date,
+        comments: [{body:"string", by: mongoose.Schema.Types.ObjectId}],
     }],
     dateCreated: Date,
     savedFiles:[{}],

@@ -24,12 +24,15 @@ class Form extends Component {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
         
-        API.savePost(this.state);
+        API.savePost(this.state)
+        .then(data => {
+          console.log("data: ", data);
+          this.setState({
+            title: data.data.title,
+            body: data.body,
+            
+          });
 
-        this.setState({
-          title: "",
-          body: "",
-          author: ""
         });
       };
 

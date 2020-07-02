@@ -1,10 +1,14 @@
 const router = require("express").Router();
 const postController = require("../../controllers/postController");
 
-// Matches with "/api/books"
-router.route("/")
+console.log("posts.js reached");
+router
+  .route("/")
+  .post(postController.create)
   .get(postController.findAll)
-  .post(postController.create);
+  .put(postController.update)
+  .delete(postController.remove);
+console.log("/posts reached");
 
 // Matches with "/api/books/:id"
 router
@@ -12,5 +16,6 @@ router
   .get(postController.findById)
   .put(postController.update)
   .delete(postController.remove);
+
 
 module.exports = router;
