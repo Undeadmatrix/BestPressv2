@@ -16,7 +16,9 @@ class Login extends Component {
   
 
   handleChange = (event) => {
-    const { name, value } = event.target;
+    const name = event.target.name;
+    let value = event.target.value;
+    
     if (name === "password") {
       value = value.substring(0, 15);
     }
