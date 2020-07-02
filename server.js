@@ -27,6 +27,7 @@ app.use("/users", userRouter);
 
 
 // Connect to the Mongo DB
+<<<<<<< HEAD
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/bestpress", {
     useNewParser: true,
@@ -38,6 +39,9 @@ mongoose
   .catch((err) => {
     console.error("Could not connect to MongoDB.", err);
   });
+=======
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bestpress");
+>>>>>>> master
 
 // Start the API server
 app.listen(PORT, function () {
