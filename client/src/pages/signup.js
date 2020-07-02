@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-
-class Signup extends Component {
 import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import "./css/signup.css";
+
+class Signup extends Component {
+
   // Setting the component's initial state
   state = {
     firstName: "",
