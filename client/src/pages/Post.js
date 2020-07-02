@@ -76,7 +76,6 @@ class Form extends Component {
         // Notice how each input has a `value`, `name`, and `onChange` prop
         return (
             <Container>
-                <NavSignedIn />
                 <Row>
                     <Col size="md-6 sm-12">
                             <form className="form">

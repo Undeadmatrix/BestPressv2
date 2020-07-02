@@ -13,7 +13,7 @@ function Nav() {
     <ul className="nav nav-tabs">
       <li className="nav-item">
         <Link
-          to="/"
+          to="/signup"
           className={location.pathname === "/" ? "nav-link active" : "nav-link"}
         >
           Sign Up
@@ -29,7 +29,39 @@ function Nav() {
           Log In
         </Link>
       </li>
-    </ul>
+    <li className="nav-item">
+      <Link
+        to="/"
+        className={location.pathname === "/" ? "nav-link active" : "nav-link"}
+      >
+        Home
+      </Link>
+    </li>
+    <li className="nav-item">
+      <Link
+        to="/profile"
+        className={location.pathname === "/profile" ? "nav-link active" : "nav-link"}
+      >
+        Profile
+      </Link>
+    </li>
+    <li className="nav-item">
+      <Link
+        to="/following"
+        className={location.pathname === "/following" ? "nav-link active" : "nav-link"}
+      >
+        Following
+      </Link>
+    </li>
+    <li className="nav-item">
+      <Link
+        to="/post"
+        className={location.pathname === "/post" ? "nav-link active" : "nav-link"}
+      >
+        Post
+      </Link>
+    </li>
+  </ul>
   );
 }
 //we can make the tabs have an active state by adding the 'active' className as needed

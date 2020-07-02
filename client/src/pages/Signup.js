@@ -21,6 +21,9 @@ class Signup extends Component {
     return re.test(email);
   }
 
+  
+  
+
   componentDidUpdate() {}
 
   showHidePass = () => {
@@ -29,12 +32,14 @@ class Signup extends Component {
     else toggleText.type = "password";
   }
 
-  if (name === "password") {
-    value = value.substring(0, 15);
-  }
 
   handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === "password") {
+      value = value.substring(0, 15);
+    }
+    
     this.setState({
       [name]: value
     });
