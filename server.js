@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const routes = require("./routes");
+const session = require("express-session");
+const passport = require("passport");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,15 +18,15 @@ app.use(express.json());
 //   app.use(express.static("client/build"));
 // }
 
-app.get('/'), (req, res) => {
-  res.send('Testing');
-};
-//routes variables
-const indexRouter = require("./routes/index");
-const userRouter = require("./routes/api/users");
+// Initialize passport
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Add routes, both API and view
-app.use("/", indexRouter);
-app.use("/users", userRouter);
+app.use(routes);
+
+
 
 
 // Connect to the Mongo DB
