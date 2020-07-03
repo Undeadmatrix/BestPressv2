@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 import API from "../utils/API";
-import { Col, Row, Container } from "../components/Grid";
+// import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import "./css/signup.css";
-const styles = { inputField: { marginTop: 5 } };
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Message,
+  Segment
+} from "semantic-ui-react";
+
+// const styles = { inputField: { marginTop: 5 } };
 
 class Login extends Component {
     state = {
@@ -78,35 +87,37 @@ class Login extends Component {
       <div className="ui stackable container">
         <div className="ui form">
           <h2>BestPress</h2>
-          <form className="ui form" onSubmit={this.handleSubmit}>
-            <div className="eight wide field">
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                id="email-input"
-                placeholder="Email Address"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="eight wide field">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                id="password-input"
-                placeholder="Password"
-                onChange={this.handleChange}
-              />
-              <input type="checkbox" style = { styles.inputField } onClick={this.showHidePass} />
-              Show Password
-            </div>
-            <button type="submit" className="ui button">
-              Login
-            </button>
-          </form>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <label>Email</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="email"
+                  id="email-input"
+                  placeholder="Email Address"
+                  onChange={this.handleChange}
+                ></input>
+              </Form.Field>
+              <Form.Field>
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  id="password-input"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                ></input>
+                <input
+                  style={{ marginTop: "2px", width: "5%", float: "left" }}
+                  type="checkbox"
+                  onClick={this.showHidePass}
+                />
+                <label style={{ marginTop: "0",float: "left" }}>show password</label>
+              </Form.Field>
+              <Button type="submit">Login</Button>
+            </Form>
           <br />
           <p>
             <a href="/signup">First Time User?</a>

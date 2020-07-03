@@ -1,10 +1,5 @@
-.form {
-  margin: 20px;
+label {
+    color: #C74549 !important;
 }
 
-.form input {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-}
+
