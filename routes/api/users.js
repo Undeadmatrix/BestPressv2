@@ -1,13 +1,14 @@
 const router = require("express").Router();
-const User = require("../../models/users")
-const passport = require("../../config/passport");
+const db = require("../../models");
+const passport = require("passport");
 const postController = require("../../controllers/postController");
+//const userController = require("../../controllers/userController");
 
 //post route for signing up new user
-router.post("/signup", (req, res) => {
+ router.post("/signup", (req, res) => {
     console.log("user signed up");
     const { email, firstName, lastName, password } = req.body;
-    User.findOne({ email: email }, (err, user) => {
+    db.User.findOne({ email: email }, (err, user) => {
         if (err) {
             console.log(err);
         }
@@ -31,28 +32,37 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
-  const { email, firstName, lastName, password } = req.body;
-  User.findOne({ email: email }, (err, user) => {
+  console.log("post /login");
+  console.log("req.user: ", req.user);
+  let { email, password } = req.body;
+  if(req.user)
+  {
+    console.log("api/login user request: ", req.user);
+    return res.send({email, password } = req.user);
+  }
+   db.User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else if (user) {
-      //if user exists
-      res.json({ err: `${email} account already exists...` });
-    } else {
-      const newUser = new User({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        password: password
-      });
-      newUser.save((err, savedUser) => {
-        if (err) return res.json(err);
-        res.json(savedUser); //save new user
-        console.log("user saved");
-      });
+      res.send(user);
     }
   });
-});
+
+}); 
+/* router
+  .route("/")
+  .post(userController.create)
+  .get(userController.findAll)
+  .put(userController.update)
+  .delete(userController.remove);
+  console.log("/api/users reached");
+
+router
+  .route("/:id")
+  .get(userController.findById)
+  .put(userController.update)
+  .delete(userController.remove);
+  console.log("/api/users/:id reached"); */
 
 router.get("/posts", (req, res) => {
   console.log("/post route hit");

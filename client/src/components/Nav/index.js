@@ -21,9 +21,9 @@ function Nav() {
       </li>
       <li className="nav-item">
         <Link
-          to="/login"
+          to="/"
           className={
-            location.pathname === "/about" ? "nav-link active" : "nav-link"
+            location.pathname === "/" ? "nav-link active" : "nav-link"
           }
         >
           Log In
@@ -31,8 +31,8 @@ function Nav() {
       </li>
     <li className="nav-item">
       <Link
-        to="/"
-        className={location.pathname === "/" ? "nav-link active" : "nav-link"}
+        to="/home"
+        className={location.pathname === "/home" ? "nav-link active" : "nav-link"}
       >
         Home
       </Link>

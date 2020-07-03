@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 const Schema = mongoose.Schema;
+//const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
     email: {type: String, required: true},
@@ -36,21 +38,65 @@ const userSchema = new Schema({
     }
 });
 
-
-
-// Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-userSchema.methods.validPassword = function(password) {
-    console.log(password);
-    return bcrypt.compareSync(password, this.password);
-    };
-// Hooks are automatic methods that run during various phases of the User Model lifecycle
-// In this case, before a User is created, we will automatically hash their password
-userSchema.pre("save", function (next) {
-    const user = this;
-    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10), null);
-    next();
+var User = (module.exports = mongoose.model("User", userSchema));
+module.exports.createUser = function (newUser, callback) {
+  console.log("createUser - newUser", newUser)
+  bcrypt.genSalt(10, function (err, salt) {
+    bcrypt.hash(newUser.password, salt, function (err, hash) {
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  });
+};
+module.exports.getUserByEmail = function (email, callback) {
+  console.log("getUserByEmail", email)
+  var query = { email: email };
+  console.log(query);
+  User.findOne(query, callback);
+};
+module.exports.getUserById = function (id, callback) {
+  console.log("getUserById", id);
+  User.findById(id, callback);
+};
+module.exports.comparePassword = function (candidatePassword, hash, callback) {
+  console.log("comparePassword")
+  bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
+    if (err) throw err;
+    callback(null, isMatch);
+  });
+};
+var LocalStrategy = require("passport-local").Strategy;
+passport.use(
+  new LocalStrategy({ usernameField: "email" }, function (
+    email,
+    password,
+    done
+  ) {
+    console.log("LocalStrategy");
+    User.getUserByEmail(email, function (err, user) {
+      if (err) throw err;
+      if (!user) {
+        return done(null, false, { message: "Unknown User" });
+      }
+      User.comparePassword(password, user.password, function (err, isMatch) {
+        if (err) throw err;
+        if (isMatch) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: "Invalid password" });
+        }
+      });
+    });
+  })
+);
+passport.serializeUser(function (user, done) {
+  console.log("serializeUser", user.id)
+  done(null, user.id);
 });
-
-const User = mongoose.model("user", userSchema);
-
-module.exports = User;
+passport.deserializeUser(function (id, done) {
+  console.log("deserializeUser", id);
+  User.getUserById(id, function (err, user) {
+    console.log("deserializeUser - user", `name="${user.name}" \nemail="${user.email}"\npassword=${user.password} `);
+    done(err, user);
+  });
+});

@@ -59,14 +59,14 @@ class Signup extends Component {
     };
     console.log(newUser);
     //request to server to add a new user
-    axios.post("/users/signup", newUser)
+    axios.post("/api/users/signup", newUser)
       .then(res => {
         console.log(res);
         if (!res.data.err) {
           console.log("successful signup");
           this.setState({
             //change redirect state to login
-            redirect: "/login"
+            redirect: "/"
           });
         }
         else {
