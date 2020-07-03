@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
+import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import "./css/signup.css";
 const styles = { inputField: { marginTop: 5 } };
 
 class Login extends Component {
-  state = {
-    username: "",
+    state = {
+    email: "",
     password: ""
   };
 
@@ -29,25 +30,37 @@ class Login extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
+    console.log("handleSubmit / axios.post.login");
+    const { email, password } = this.state;
     console.log(this.state);
     //query database
-    const user = { username, password };
+    const user = { email, password };
     console.log("user", user);//finish handleSubmit
-
-    axios.post("/api/login", user)
+    
+    axios.post("/api/users/login", user)
       .then(res => {
-        console.log(res);
+        console.log("axios.post reached");
+        console.log("res.data email, password ",res.data.email, res.data.password);
+        if (!res.data.err) {
+          console.log("No errors");
+          window.location.replace("/home");
+        }
+        else {
+          console.log(res.data.err);
+        }
+      })
+      /* API.getUser(user.id)
+      .then(res => {
         if (!res.data.err) {
           console.log("No errors");
           this.setState({
             redirect: "/home"
           });
         }
-        else {
+        else{
           console.log(res.data.err);
         }
-      })
+        }) */
       .catch(err => {
         console.log("error", err);
       });
@@ -71,7 +84,7 @@ class Login extends Component {
               <input
                 type="text"
                 className="form-control"
-                name="username"
+                name="email"
                 id="email-input"
                 placeholder="Email Address"
                 onChange={this.handleChange}

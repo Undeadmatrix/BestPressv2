@@ -71,5 +71,6 @@
     "semantic-ui-react": "^0.88.2",
     "wrench-sui": "0.0.3",
     "yamljs": "^0.3.0"
+    "passport-local-mongoose": "^6.0.1"
   }
 }
