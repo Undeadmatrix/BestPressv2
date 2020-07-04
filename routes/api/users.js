@@ -16,7 +16,7 @@ const postController = require("../../controllers/postController");
             res.json({ err: `${email} account already exists...` });
         }
         else {
-            const newUser = new User({
+            const newUser = new db.User({
                 email: email,
                 firstName: firstName,
                 lastName: lastName,
