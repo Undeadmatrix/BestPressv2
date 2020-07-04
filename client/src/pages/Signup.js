@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import "./css/signup.css";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Checkbox } from "semantic-ui-react";
 
 class Signup extends Component {
   // Setting the component's initial state
@@ -68,6 +68,7 @@ class Signup extends Component {
           });
         } else {
           console.log(res.data.err);
+          alert(res.data.err);
         }
       })
       .catch((err) => {
@@ -154,65 +155,69 @@ class Signup extends Component {
     }
 
     return (
-      <div id="signup" className="ui stackable container eight wide">
-        <Form onSubmit={this.handleSubmit}>
-          <h2>Signup Form</h2>
-          <Form.Field>
-            <label htmlFor="firstName">First name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="firstName"
-              id="first-input"
-              placeholder="First Name"
-              value={this.state.firstName}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label htmlFor="lastName">Last name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="lastName"
-              id="last-input"
-              placeholder="Last Name"
-              value={this.state.lastName}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              className="form-control"
-              name="email"
-              id="email-input"
-              placeholder="Email Address"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              id="password-input"
-              placeholder="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-          </Form.Field>          
-          <Button type="submit" className="ui button">
-            Signup
-          </Button>
-          <input type="checkbox" onClick={this.showHidePass} />
-          Show Password
-        </Form>
-        <a href="/login">Already have an account?</a>
-      </div>
+      <Form
+        className="ui stackable container eight wide"
+        onSubmit={this.handleSubmit}
+      >
+        <h2>Create a New Account</h2>
+        <Form.Field>
+          <label htmlFor="firstName">First name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="firstName"
+            id="first-input"
+            placeholder="First Name"
+            value={this.state.firstName}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="lastName">Last name</label>
+          <input
+            type="text"
+            className="form-control"
+            name="lastName"
+            id="last-input"
+            placeholder="Last Name"
+            value={this.state.lastName}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            className="form-control"
+            name="email"
+            id="email-input"
+            placeholder="Email Address"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password-input"
+            placeholder="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
+          <Checkbox label="show password" onClick={this.showHidePass} />
+        </Form.Field>
+
+        <Button style={{ float: "left" }} type="submit">
+          Signup
+        </Button>
+        <div>
+          <a id="switch-login" href="/">
+            Already have an account?
+          </a>
+        </div>
+      </Form>
     );
   }
 }
