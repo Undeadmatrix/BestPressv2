@@ -5,9 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+   background-color: darkslategray;
+}
+
+.ui.form input {
+  background-color: darkslategray !important;
+  border: none !important;
+  border-bottom: 2px solid #D0D9B5 !important;
+  border-radius: 0 !important;
+}
+
+h1, h2 {
+  color: #ff6624;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  color: black;
 }
