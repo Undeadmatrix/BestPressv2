@@ -8,15 +8,30 @@ body {
    background-color: darkslategray;
 }
 
-.ui.form input {
+.ui.form input{
   background-color: darkslategray !important;
   border: none !important;
   border-bottom: 2px solid #D0D9B5 !important;
   border-radius: 0 !important;
 }
 
+form.ui.form {
+  margin-top: 10px;
+}
+
 h1, h2 {
-  color: #ff6624;
+  color: #C74549;
+}
+
+label {
+    color: #C74549 !important;
+    margin-top: 10px;
+}
+
+#switch-login {
+    position: absolute;
+    margin-top: 10px !important;
+    margin-left: 10px;
 }
 
 code {
@@ -25,5 +40,5 @@ code {
 }
 
 a {
-  color: black;
+  color: black;  
 }

@@ -4,31 +4,30 @@ import API from "../utils/API";
 // import { Col, Row, Container } from "../components/Grid";
 import Nav from "../components/Nav";
 import "./css/signup.css";
+
 import {
   Button,
   Form,
+  Checkbox,
   Grid,
   Header,
   Message,
   Segment
 } from "semantic-ui-react";
 
-// const styles = { inputField: { marginTop: 5 } };
 
 class Login extends Component {
-    state = {
+  state = {
     email: "",
     password: ""
   };
 
   componentDidUpdate() {}
 
-  
-
   handleChange = (event) => {
     const name = event.target.name;
     let value = event.target.value;
-    
+
     if (name === "password") {
       value = value.substring(0, 15);
     }
@@ -44,17 +43,21 @@ class Login extends Component {
     console.log(this.state);
     //query database
     const user = { email, password };
-    console.log("user", user);//finish handleSubmit
-    
-    axios.post("/api/users/login", user)
-      .then(res => {
+    console.log("user", user); //finish handleSubmit
+
+    axios
+      .post("/api/users/login", user)
+      .then((res) => {
         console.log("axios.post reached");
-        console.log("res.data email, password ",res.data.email, res.data.password);
+        console.log(
+          "res.data email, password ",
+          res.data.email,
+          res.data.password
+        );
         if (!res.data.err) {
           console.log("No errors");
           window.location.replace("/home");
-        }
-        else {
+        } else {
           console.log(res.data.err);
         }
       })
@@ -70,7 +73,7 @@ class Login extends Component {
           console.log(res.data.err);
         }
         }) */
-      .catch(err => {
+      .catch((err) => {
         console.log("error", err);
       });
   };
@@ -84,60 +87,50 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="ui stackable container">
-        <div className="ui form">
-          <h2>BestPress</h2>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Field>
-                <label>Email</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  id="email-input"
-                  placeholder="Email Address"
-                  onChange={this.handleChange}
-                ></input>
-              </Form.Field>
-              <Form.Field>
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  id="password-input"
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                ></input>
-                <input
-                  style={{ marginTop: "2px", width: "5%", float: "left" }}
-                  type="checkbox"
-                  onClick={this.showHidePass}
-                />
-                <label style={{ marginTop: "0",float: "left" }}>show password</label>
-              </Form.Field>
-              <Button type="submit">Login</Button>
-            </Form>
-          <br />
-          <p>
-            <a href="/signup">First Time User?</a>
-          </p>
+      <Form
+        className="ui stackable container eight wide"
+        onSubmit={this.handleSubmit}
+      >
+        <h2>BestPress</h2>
+        <Form.Field>
+          <label>Email</label>
+          <input
+            type="text"
+            className="form-control"
+            name="email"
+            id="email-input"
+            placeholder="Email Address"
+            onChange={this.handleChange}
+          ></input>
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            id="password-input"
+            placeholder="Password"
+            onChange={this.handleChange}
+          ></input>
+          <Form.Field>
+            <Checkbox
+              label="show password"
+              onClick={this.showHidePass}
+            ></Checkbox>
+          </Form.Field>
+        </Form.Field>
+        <Button style={{ float: "left" }} type="submit">
+          Login
+        </Button>
+        <div>
+          <a id="switch-login" href="/signup">First Time User?</a>
         </div>
-      </div>
+      </Form>
     );
   }
 }
-export default Login;
-  /* handleFormSubmit = (event) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    if (this.state.password.length < 6) {
-      alert(
-        `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
-      );
-    } /* else if(!this.state.email || !this.validateEmail(this.state.email)) {
-        alert("Please include a valid email");
-    } */ /* else{
+export default Login; /* else{
         window.location.replace("/home");
     }
     this.setState({
@@ -179,4 +172,14 @@ export default Login;
   }
 }
 
-export default Form; */ 
+export default Form; */
+/* handleFormSubmit = (event) => {
+    // Preventing the default behavior of the form submit (which is to refresh the page)
+    event.preventDefault();
+    if (this.state.password.length < 6) {
+      alert(
+        `Choose a more secure password ${this.state.firstName} ${this.state.lastName}`
+      );
+    } /* else if(!this.state.email || !this.validateEmail(this.state.email)) {
+        alert("Please include a valid email");
+    } */
