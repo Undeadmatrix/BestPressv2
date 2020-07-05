@@ -19,12 +19,22 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function(req, res) {
-    console.log("create func");
-    db.User.posts
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+  create: function (req, res) {
+    console.log("req.body: ",req.body);
+    // 1. find the existing user (I guess passport does the job)
+    db.User.findById(req.body.userid).then((user) => {
+      // 2. add an post
+      user.posts.push({
+        title: req.body.title,
+        body: req.body.body,
+        postedBy: req.body.userid,
+        dateCreated: Date.now(),
+        comments: [],
+      }).catch(err => res.status(422).json(err));
+  
+      // 3. persist the changes
+      user.save();
+    });
   },
   update: function(req, res) {
     db.User.posts

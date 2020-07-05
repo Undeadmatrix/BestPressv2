@@ -64,10 +64,10 @@ router
   .delete(userController.remove);
   console.log("/api/users/:id reached"); */
 
-router.get("/posts", (req, res) => {
+/* router.get("/posts", (req, res) => {
   console.log("/post route hit");
   console.log(req.data);
-})
+}) */
 
 router
   .route("/posts")

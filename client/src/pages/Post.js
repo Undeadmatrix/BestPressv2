@@ -42,7 +42,8 @@ import API from "../utils/API";
 class Form extends Component {
     state = {
         title: "",
-        body: ""
+        body: "",
+        userId: ""
     }
 
     handleInputChange = (event) => {
@@ -65,7 +66,7 @@ class Form extends Component {
           console.log("data: ", data);
           this.setState({
             title: data.data.title,
-            body: data.body,
+            body: data.data.body,
             
           });
 
