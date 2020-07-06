@@ -48,7 +48,15 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
     }
   });
 
-}); 
+});
+
+router.get("/logout", function(req, res) {
+  console.log("logout clicked");
+  req.logout();
+  res.redirect("/");
+});
+
+
 /* router
   .route("/")
   .post(userController.create)
@@ -62,12 +70,12 @@ router
   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
-  console.log("/api/users/:id reached"); */
+  console.log("/api/users/:id reached"); */ 
 
-router.get("/posts", (req, res) => {
+/* router.get("/posts", (req, res) => {
   console.log("/post route hit");
   console.log(req.data);
-})
+}) */
 
 router
   .route("/posts")
