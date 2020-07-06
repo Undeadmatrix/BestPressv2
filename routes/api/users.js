@@ -48,7 +48,7 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
     if (err) {
       console.log(err);
     } else if (user) {
-      res.redirect("/home" + req.user);
+      res.send(user);
     }
   });
 });

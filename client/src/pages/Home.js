@@ -24,6 +24,10 @@ function Home() {
           return formattedDate;
       }
 
+      function getUser() {
+          
+      }
+
       function loadPosts() {
           console.log("loadPosts Reached");
         API.getPosts()
