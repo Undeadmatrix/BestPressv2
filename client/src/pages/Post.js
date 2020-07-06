@@ -77,31 +77,32 @@ class Form extends Component {
       render() {
         // Notice how each input has a `value`, `name`, and `onChange` prop
         return (
-            <Container>
-                <Row>
-                    <Col size="md-6 sm-12">
-                            <form className="form">
-                            <h3>Title</h3>
-                            <input
-                                value={this.state.title}
-                                name="title"
-                                onChange={this.handleInputChange}
-                                type="text"
-                                placeholder="Title"
-                            />
-                            <h3>Body</h3>
-                            <input
-                                value={this.state.body}
-                                name="body"
-                                onChange={this.handleInputChange}
-                                type="text"
-                                placeholder="Body"
-                            />
-                            <button onClick={this.handleFormSubmit}>Submit</button>
-                        </form>
-                    </Col>
-                </Row>
-            </Container>
+          <Container>
+            <NavSignedIn />
+            <Row>
+              <Col size="md-6 sm-12">
+                <form className="form">
+                  <h3>Title</h3>
+                  <input
+                    value={this.state.title}
+                    name="title"
+                    onChange={this.handleInputChange}
+                    type="text"
+                    placeholder="Title"
+                  />
+                  <h3>Body</h3>
+                  <input
+                    value={this.state.body}
+                    name="body"
+                    onChange={this.handleInputChange}
+                    type="text"
+                    placeholder="Body"
+                  />
+                  <button onClick={this.handleFormSubmit}>Submit</button>
+                </form>
+              </Col>
+            </Row>
+          </Container>
         );
       }
 }
