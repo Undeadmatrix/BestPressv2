@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NavSignedIn from "../components/NavSignedIn";
 // import cloudinary from "cloudinary-core";
 
 const Profile = () => {
@@ -51,26 +52,30 @@ const Profile = () => {
 
   return (
     <div className="ui container">
+      <NavSignedIn />
       <h1 className="center red-text">Profile Image Upload</h1>
       <div className="file-field input-field">
         <div className="button">
           <span>Browse </span>
-          <input type="file" name="file" placeholder="Upload an image" onChange={onChange} />
+          <input
+            type="file"
+            name="file"
+            placeholder="Upload an image"
+            onChange={onChange}
+          />
           <div>
             {loading ? (
-            <h3>Loading...</h3>
-          ) : (
+              <h3>Loading...</h3>
+            ) : (
               <img src={image} style={{ width: "300px" }} />
             )}
           </div>
         </div>
-      
       </div>
       <script
         src="https://widget.cloudinary.com/v2.0/global/all.js"
         type="text/javascript"
       ></script>
-      
     </div>
   );
 };
