@@ -59,6 +59,7 @@
     "gulp-uglify": "^3.0.2",
     "if-env": "^1.0.4",
     "inquirer": "^7.3.0",
+    "moment": "^2.27.0",
     "mongoose": "^5.3.16",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

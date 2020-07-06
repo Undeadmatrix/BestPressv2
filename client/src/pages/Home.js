@@ -17,6 +17,13 @@ function Home() {
         loadPosts()
       }, [])
 
+      function formatDate(date) {
+          console.log("format date reached");
+          const moment = require("moment");
+          const formattedDate = moment(date).format("YYYY-MM-DD");
+          return formattedDate;
+      }
+
       function loadPosts() {
           console.log("loadPosts Reached");
         API.getPosts()
@@ -58,6 +65,7 @@ function Home() {
                             <br />
                                 <strong>
                                     <h2>{post.title} by {post.author}</h2>
+                                    <p>{formatDate(post.dateCreated)}</p>
                                 </strong>
                                 <br />
                                 <h4>{post.body}</h4>
