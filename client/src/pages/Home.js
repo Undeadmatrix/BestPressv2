@@ -60,7 +60,7 @@ function Home() {
                     </Jumbotron>
                     {posts.length ? (
                         <List>
-                    {posts.map(post => (
+                    {posts.slice(0).reverse().map(post => (
                         <ListItem key={post._id}>
                             <br />
                                 <strong>
