@@ -2,6 +2,7 @@ const router = require("express").Router();
 const db = require("../../models");
 const passport = require("passport");
 const postController = require("../../controllers/postController");
+const { createUser } = require("../../models/users");
 //const userController = require("../../controllers/userController");
 
 //post route for signing up new user
@@ -22,11 +23,13 @@ const postController = require("../../controllers/postController");
                 lastName: lastName,
                 password: password
             });
-            newUser.save((err, savedUser) => {
-                if (err) return res.json(err);
-                res.json(savedUser);//save new user
-                console.log("user saved")
-            });
+          createUser(newUser);
+          res.send("/");
+            // newUser.save((err, savedUser) => {
+            //     if (err) return res.json(err);
+            //     res.json(savedUser);//save new user
+            //     console.log("user saved")
+            // });
         }
     })
 });
