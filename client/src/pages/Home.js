@@ -11,7 +11,7 @@ import Axios from "axios";
 function Home() {
     const [posts, setPosts] = useState([])
 
-    
+
 
     useEffect(() => {
         loadPosts()
@@ -56,7 +56,7 @@ function Home() {
                         <ListItem key={post._id}>
                             <Link to={"/posts/" + post._id}>
                                 <strong>
-                                    {post.title} by {post.postedBy}
+                                    {post.title} by {post.author}
                                 </strong>
                             </Link>
                             <DeleteBtn onClick={() => deletePost(post._id)} />
