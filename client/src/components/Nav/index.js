@@ -13,14 +13,6 @@ function Nav() {
         <Menu.Item active={location.pathname === "/" ? "true" : ""}>
           <Link to="/">Log In</Link>
         </Menu.Item>
-
-        <Menu.Item position="right">
-          <Link
-            to="/api/users/logout"
-          >
-            Logout
-          </Link>
-        </Menu.Item>
       </Menu>
     </div>
   );

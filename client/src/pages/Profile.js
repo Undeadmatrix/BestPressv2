@@ -51,8 +51,9 @@ const Profile = () => {
   };
 
   return (
-    <div className="ui container">
+    <div>
       <NavSignedIn />
+    <div className="ui container">
       <h1 className="center red-text">Profile Image Upload</h1>
       <div className="file-field input-field">
         <div className="button">
@@ -67,7 +68,7 @@ const Profile = () => {
             {loading ? (
               <h3>Loading...</h3>
             ) : (
-              <img src={image} style={{ width: "300px" }} />
+              <img src={image} alt="profile pic" style={{ width: "300px" }} />
             )}
           </div>
         </div>
@@ -76,6 +77,7 @@ const Profile = () => {
         src="https://widget.cloudinary.com/v2.0/global/all.js"
         type="text/javascript"
       ></script>
+    </div>
     </div>
   );
 };

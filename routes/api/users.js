@@ -53,12 +53,6 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   });
 });
 
-router.get("/logout", function (req, res) {
-  console.log("logout clicked");
-  req.logout();
-  res.redirect("/");
-});
-
 /* router.get("/:id", function(req, res) {
   console.log("id hit");
   db.User

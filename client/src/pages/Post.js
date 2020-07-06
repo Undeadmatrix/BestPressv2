@@ -70,8 +70,8 @@ class Form extends Component {
             body: data.data.body,
             userid: data.data.userid
           });
-
         });
+        window.location.replace("/home");
       };
 
       render() {

@@ -7,15 +7,26 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import NavSignedIn from "../components/NavSignedIn";
 import Axios from "axios";
+//import { post } from "../../../routes";
 
 function Home() {
     const [posts, setPosts] = useState([])
 
 
-
     useEffect(() => {
         loadPosts()
       }, [])
+
+      function formatDate(date) {
+          console.log("format date reached");
+          const moment = require("moment");
+          const formattedDate = moment(date).format("YYYY-MM-DD");
+          return formattedDate;
+      }
+
+      function getUser() {
+          
+      }
 
       function loadPosts() {
           console.log("loadPosts Reached");
@@ -44,7 +55,7 @@ function Home() {
             <Row>
                 <Col size="md-6">
                     <Jumbotron>
-                        <h1>Welcome</h1>
+                        <h1>Welcome, INSERT USER HERE</h1>
                     </Jumbotron>
                 </Col>
                 <Col size="md-6 sm-12">
@@ -53,22 +64,36 @@ function Home() {
                     </Jumbotron>
                     {posts.length ? (
                         <List>
-                    {posts.map(post => (
+                    {posts.slice(0).reverse().map(post => (
                         <ListItem key={post._id}>
+                            <br />
                                 <strong>
                                     <h2>{post.title} by {post.author}</h2>
+                                    <p>{formatDate(post.dateCreated)}</p>
                                 </strong>
                                 <br />
                                 <h4>{post.body}</h4>
                             <DeleteBtn onClick={() => deletePost(post._id)} />
+                            <br />
                         </ListItem>
                     ))}
                     </List>
+                    
                     ) : (
                         <h3>No Results to Display</h3>
-                      )}
+                      )
+                      
+                      }
                 </Col>
             </Row>
+            <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
         </Container>
     );
 }
