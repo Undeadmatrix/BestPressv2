@@ -18,6 +18,9 @@ function NavSignedIn() {
       <Menu.Item active={location.pathname === "/post" ? "true" : ""}>
         <Link to="/post">Post</Link>
       </Menu.Item>
+      <Menu.Item active={location.pathname === "/" ? "true" : ""}>
+        <Link to="/">Logout</Link>
+      </Menu.Item>
     </Menu>
   );
 }
