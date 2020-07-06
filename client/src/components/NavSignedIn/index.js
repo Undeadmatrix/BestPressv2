@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu } from "semantic-ui-react"
+import { left } from "inquirer/lib/utils/readline";
 
 function NavSignedIn() {
   const location = useLocation();
@@ -19,7 +20,7 @@ function NavSignedIn() {
         <Link to="/post">Post</Link>
       </Menu.Item>
       <Menu.Item active={location.pathname === "/" ? "true" : ""}>
-        <Link to="/">Logout</Link>
+        <Link style={{marginLeft: "1151px"}}to="/">Logout</Link>
       </Menu.Item>
     </Menu>
   );
