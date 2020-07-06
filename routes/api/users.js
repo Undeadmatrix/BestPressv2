@@ -48,15 +48,9 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
     if (err) {
       console.log(err);
     } else if (user) {
-      res.send(user);
+      res.redirect("/home" + req.user);
     }
   });
-});
-
-router.get("/logout", function (req, res) {
-  console.log("logout clicked");
-  req.logout();
-  res.redirect("/");
 });
 
 /* router.get("/:id", function(req, res) {

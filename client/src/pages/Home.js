@@ -7,10 +7,10 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import NavSignedIn from "../components/NavSignedIn";
 import Axios from "axios";
+//import { post } from "../../../routes";
 
 function Home() {
     const [posts, setPosts] = useState([])
-
 
 
     useEffect(() => {
@@ -51,7 +51,7 @@ function Home() {
             <Row>
                 <Col size="md-6">
                     <Jumbotron>
-                        <h1>Welcome</h1>
+                        <h1>Welcome, INSERT USER HERE</h1>
                     </Jumbotron>
                 </Col>
                 <Col size="md-6 sm-12">
