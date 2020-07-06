@@ -87,6 +87,8 @@ class Login extends Component {
 
   render() {
     return (
+      <div>
+      <Nav />
       <Form
         className="ui stackable container eight wide"
         onSubmit={this.handleSubmit}
@@ -127,6 +129,7 @@ class Login extends Component {
           <a id="switch-login" href="/signup">First Time User?</a>
         </div>
       </Form>
+      </div>
     );
   }
 }
