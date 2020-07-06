@@ -10,6 +10,11 @@
   margin: 0;
 }
 
+.list-overflow-container p {
+  margin-top: 20px;
+  margin: 0;
+}
+
 .list-overflow-container li {
   border-radius: 0px;
   border-left: none;

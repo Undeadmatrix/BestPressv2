@@ -55,20 +55,33 @@ function Home() {
                         <List>
                     {posts.map(post => (
                         <ListItem key={post._id}>
+                            <br />
                                 <strong>
                                     <h2>{post.title} by {post.author}</h2>
                                 </strong>
                                 <br />
                                 <h4>{post.body}</h4>
                             <DeleteBtn onClick={() => deletePost(post._id)} />
+                            <br />
                         </ListItem>
                     ))}
                     </List>
+                    
                     ) : (
                         <h3>No Results to Display</h3>
-                      )}
+                      )
+                      
+                      }
                 </Col>
             </Row>
+            <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
         </Container>
     );
 }
