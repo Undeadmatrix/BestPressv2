@@ -2,6 +2,7 @@ const router = require("express").Router();
 const db = require("../../models");
 const passport = require("passport");
 const postController = require("../../controllers/postController");
+const { createUser } = require("../../models/users");
 //const userController = require("../../controllers/userController");
 
 //post route for signing up new user
@@ -22,11 +23,13 @@ const postController = require("../../controllers/postController");
                 lastName: lastName,
                 password: password
             });
-            newUser.save((err, savedUser) => {
+            createUser(newUser);
+            /* newUser.save((err, savedUser) => {
                 if (err) return res.json(err);
                 res.json(savedUser);//save new user
                 console.log("user saved")
-            });
+                console.log("name: ", newUser.firstName, newUser.lastName);
+            }); */
         }
     })
 });
@@ -56,7 +59,13 @@ router.get("/logout", function(req, res) {
   res.redirect("/");
 });
 
-
+/* router.get("/:id", function(req, res) {
+  console.log("id hit");
+  db.User
+      .findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+}) */
 /* router
   .route("/")
   .post(userController.create)
