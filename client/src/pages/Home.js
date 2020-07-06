@@ -24,10 +24,6 @@ function Home() {
           return formattedDate;
       }
 
-      function getUser() {
-          
-      }
-
       function loadPosts() {
           console.log("loadPosts Reached");
         API.getPosts()
@@ -55,7 +51,7 @@ function Home() {
             <Row>
                 <Col size="md-6">
                     <Jumbotron>
-                        <h1>Welcome, INSERT USER HERE</h1>
+                        <h1>Welcome, {localStorage.getItem("loginToken")}</h1>
                     </Jumbotron>
                 </Col>
                 <Col size="md-6 sm-12">
