@@ -6,60 +6,66 @@ const { createUser } = require("../../models/users");
 //const userController = require("../../controllers/userController");
 
 //post route for signing up new user
- router.post("/signup", (req, res) => {
-    console.log("user signed up");
-    const { email, firstName, lastName, password } = req.body;
-    db.User.findOne({ email: email }, (err, user) => {
-        if (err) {
-            console.log(err);
-        }
-        else if (user) {//if user exists
-            res.json({ err: `${email} account already exists...` });
-        }
-        else {
-            const newUser = new db.User({
-                email: email,
-                firstName: firstName,
-                lastName: lastName,
-                password: password
-            });
-          createUser(newUser);
-          res.send("/");
-            // newUser.save((err, savedUser) => {
-            //     if (err) return res.json(err);
-            //     res.json(savedUser);//save new user
-            //     console.log("user saved")
-            // });
-        }
-    })
+router.post("/signup", (req, res) => {
+  console.log("user signed up");
+  const { email, firstName, lastName, password } = req.body;
+  console.log("name: ", req.body.firstName, req.body.lastName);
+  db.User.findOne({ email: email }, (err, user) => {
+    if (err) {
+      console.log(err);
+    } else if (user) {
+      //if user exists
+      res.json({ err: `${email} account already exists...` });
+    } else {
+      const newUser = new db.User({
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        password: password
+      });
+      createUser(newUser);
+      res.send("/");
+      console.log("new Name: ", newUser.firstName, newUser.lastName);
+      /* newUser.save((err, savedUser) => {
+                if (err) return res.json(err);
+                res.json(savedUser);//save new user
+                console.log("user saved")
+                console.log("name: ", newUser.firstName, newUser.lastName);
+            }); */
+    }
+  });
 });
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
   console.log("post /login");
   console.log("req.user: ", req.user);
   let { email, password } = req.body;
-  if(req.user)
-  {
+  if (req.user) {
     console.log("api/login user request: ", req.user);
-    return res.send({email, password } = req.user);
+    return res.send(({ email, password } = req.user));
   }
-   db.User.findOne({ email: email }, (err, user) => {
+  db.User.findOne({ email: email }, (err, user) => {
     if (err) {
       console.log(err);
     } else if (user) {
       res.send(user);
     }
   });
-
 });
 
-router.get("/logout", function(req, res) {
+router.get("/logout", function (req, res) {
   console.log("logout clicked");
   req.logout();
   res.redirect("/");
 });
 
-
+/* router.get("/:id", function(req, res) {
+  console.log("id hit");
+  db.User
+      .findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+}) */
 /* router
   .route("/")
   .post(userController.create)
@@ -73,7 +79,7 @@ router
   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
-  console.log("/api/users/:id reached"); */ 
+  console.log("/api/users/:id reached"); */
 
 /* router.get("/posts", (req, res) => {
   console.log("/post route hit");

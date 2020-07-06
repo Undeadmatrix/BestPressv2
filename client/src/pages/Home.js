@@ -6,9 +6,12 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import NavSignedIn from "../components/NavSignedIn";
+import Axios from "axios";
 
 function Home() {
     const [posts, setPosts] = useState([])
+
+
 
     useEffect(() => {
         loadPosts()
@@ -19,6 +22,11 @@ function Home() {
         API.getPosts()
           .then(res => {
             setPosts(res.data)
+            /* Axios.get("/api/users/" + res.postedBy)
+            .then(res => {
+                console.log("author: ", res.data);
+                return author = res.firstname + res.lastname;
+            }) */
             console.log(res.data)
           })
           .catch(err => console.log(err));
@@ -47,11 +55,11 @@ function Home() {
                         <List>
                     {posts.map(post => (
                         <ListItem key={post._id}>
-                            <Link to={"/posts/" + post._id}>
                                 <strong>
-                                    {post.title} by {post.author}
+                                    <h2>{post.title} by {post.author}</h2>
                                 </strong>
-                            </Link>
+                                <br />
+                                <h4>{post.body}</h4>
                             <DeleteBtn onClick={() => deletePost(post._id)} />
                         </ListItem>
                     ))}

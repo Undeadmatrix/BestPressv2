@@ -25,10 +25,11 @@ module.exports = {
     console.log("req.body: ",req.body);
     console.log("req.user ", req.user);
     // 1. find the existing user (or you get id from Passport session)
-  db.User.findById(req.user._id).then((user) => {
+  db.User.findByIdAndUpdate(req.user._id).then((user) => {
     // 2. add an post set "postedBy" as the user
     return db.Post.create({
       postedBy: req.user._id,
+      author: req.user.firstName + " " + req.user.lastName,
       title: req.body.title,
       body: req.body.body,
       dateCreated: Date.now(),

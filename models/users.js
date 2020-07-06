@@ -7,8 +7,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
-    firstname: String,
-    lastname: String,
+    firstName: String,
+    lastName: String,
     following: [{
         User: String,
         id: {type: mongoose.Schema.Types.ObjectId }
