@@ -25,6 +25,7 @@ const { createUser } = require("../../models/users");
                 password: password
             });
             createUser(newUser);
+            res.send("/");
             console.log("new Name: ", newUser.firstName, newUser.lastName);
             console.log("newUser: ", newUser.email, newUser.password);
             /* newUser.save((err, savedUser) => {

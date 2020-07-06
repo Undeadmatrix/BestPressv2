@@ -54,11 +54,11 @@ function Home() {
                         <List>
                     {posts.map(post => (
                         <ListItem key={post._id}>
-                            <Link to={"/posts/" + post._id}>
                                 <strong>
-                                    {post.title} by {post.author}
+                                    <h2>{post.title} by {post.author}</h2>
                                 </strong>
-                            </Link>
+                                <br />
+                                <h4>{post.body}</h4>
                             <DeleteBtn onClick={() => deletePost(post._id)} />
                         </ListItem>
                     ))}
