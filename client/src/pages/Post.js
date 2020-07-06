@@ -38,12 +38,13 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import NavSignedIn from "../components/NavSignedIn";
 import API from "../utils/API";
+import passport from "passport";
 
 class Form extends Component {
     state = {
         title: "",
         body: "",
-        userId: ""
+        userid: passport.session._id
     }
 
     handleInputChange = (event) => {
@@ -67,7 +68,7 @@ class Form extends Component {
           this.setState({
             title: data.data.title,
             body: data.data.body,
-            
+            userid: data.data.userid
           });
 
         });
