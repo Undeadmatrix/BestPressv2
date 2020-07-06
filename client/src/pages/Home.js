@@ -32,6 +32,7 @@ function Home() {
 
     return (
         <Container fluid>
+            <NavSignedIn />
             <Row>
                 <Col size="md-6">
                     <Jumbotron>

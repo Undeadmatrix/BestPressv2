@@ -6,7 +6,6 @@ import Profile from "./pages/Profile";
 import Post from "./pages/Post";
 import Following from "./pages/Following";
 import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Cloudinary from "cloudinary-core";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
@@ -19,7 +18,6 @@ function App() {
   return (
     <CloudinaryContext cloudName="bestpress">
       <Router>
-          <Nav />
           <Switch>
             
               <Route exact path="/" component={Login} />
