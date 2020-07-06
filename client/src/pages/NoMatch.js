@@ -6,7 +6,7 @@ import NavSignedIn from "../components/NavSignedIn";
 function NoMatch() {
   return (
     <Container fluid>
-      <Nav />
+      <NavSignedIn />
         <Row>
         <Col size="md-12">
           <Jumbotron>

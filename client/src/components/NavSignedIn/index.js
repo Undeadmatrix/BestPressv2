@@ -7,7 +7,7 @@ function NavSignedIn() {
   return (
     <Menu>
       <Menu.Item active={location.pathname === "/home" ? "true" : ""}>
-        <Link to="/signup">Home</Link>
+        <Link to="/home">Home</Link>
       </Menu.Item>
       <Menu.Item active={location.pathname === "/profile" ? "true" : ""}>
         <Link to="/profile">Profile</Link>

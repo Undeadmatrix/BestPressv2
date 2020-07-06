@@ -5,8 +5,8 @@ const Following = () => {
     return (
         <div>
             <NavSignedIn />
+            <p>Following</p>
         </div>
-        <p>Following</p>
     )
 };
 
