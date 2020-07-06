@@ -29,6 +29,7 @@ module.exports = {
     // 2. add an post set "postedBy" as the user
     return db.Post.create({
       postedBy: req.user._id,
+      author: req.user.firstName + " " + req.user.lastName,
       title: req.body.title,
       body: req.body.body,
       dateCreated: Date.now(),

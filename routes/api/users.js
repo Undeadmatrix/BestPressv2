@@ -9,6 +9,7 @@ const { createUser } = require("../../models/users");
  router.post("/signup", (req, res) => {
     console.log("user signed up");
     const { email, firstName, lastName, password } = req.body;
+    console.log("name: ", req.body.firstName, req.body.lastName);
     db.User.findOne({ email: email }, (err, user) => {
         if (err) {
             console.log(err);
@@ -24,6 +25,9 @@ const { createUser } = require("../../models/users");
                 password: password
             });
             createUser(newUser);
+            res.send("/");
+            console.log("new Name: ", newUser.firstName, newUser.lastName);
+            console.log("newUser: ", newUser.email, newUser.password);
             /* newUser.save((err, savedUser) => {
                 if (err) return res.json(err);
                 res.json(savedUser);//save new user
