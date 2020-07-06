@@ -77,7 +77,7 @@ function Nav() {
         </Menu.Item>
         <Menu.Item className="nav-item">
           <Link
-            to="/logout"
+            to="/api/users/logout"
             className={
               location.pathname === "/api/users/logout" ? "nav-link active" : "nav-link"
             }

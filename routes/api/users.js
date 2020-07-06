@@ -70,7 +70,7 @@ router
   .get(userController.findById)
   .put(userController.update)
   .delete(userController.remove);
-  console.log("/api/users/:id reached"); */
+  console.log("/api/users/:id reached"); */ 
 
 /* router.get("/posts", (req, res) => {
   console.log("/post route hit");

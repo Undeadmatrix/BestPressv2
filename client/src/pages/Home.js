@@ -17,10 +17,10 @@ function Home() {
       function loadPosts() {
           console.log("loadPosts Reached");
         API.getPosts()
-          .then(res => 
-            //setPosts(res.data)
+          .then(res => {
+            setPosts(res.data)
             console.log(res.data)
-          )
+          })
           .catch(err => console.log(err));
       };
 

@@ -44,7 +44,7 @@ class Form extends Component {
     state = {
         title: "",
         body: "",
-        userid: passport.session._id
+        userid: ""
     }
 
     handleInputChange = (event) => {

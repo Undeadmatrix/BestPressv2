@@ -23,12 +23,12 @@ module.exports = {
   create: function (req, res) {
     console.log("postController Create reached: ");
     console.log("req.body: ",req.body);
-    console.log("userid: ", passport.session._id);
+    console.log("req.user ", req.user);
     // 1. find the existing user (or you get id from Passport session)
-  db.User.findById(req.body.userid).then((user) => {
+  db.User.findById(req.user._id).then((user) => {
     // 2. add an post set "postedBy" as the user
     return db.Post.create({
-      postedBy: user._id,
+      postedBy: req.user._id,
       title: req.body.title,
       body: req.body.body,
       dateCreated: Date.now(),
