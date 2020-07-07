@@ -24,5 +24,8 @@ export default {
   getPostsByUser: function(id) {
     console.log("getPostsByUser: ", id);
     return axios.get("/api/users/profile/" + id);
+  },
+  updateUserEmail: function(email) {
+    return axios.put("/api/users/updateEmail/" + email);
   }
 };

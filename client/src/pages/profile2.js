@@ -4,7 +4,7 @@ import API from "../utils/API";
 import NavSignedIn from "../components/NavSignedIn";
 import DeleteBtn from "../components/DeleteBtn";
 import { List, ListItem } from "../components/List";
-
+import "./css/profile.css";
 
 
 class Profile2 extends React.Component {
@@ -60,7 +60,7 @@ class Profile2 extends React.Component {
         }
 
         function deletePost(id) {
-            var check = window.confirm("are you sure you want to delete this post?");
+            var check = window.confirm("Are you sure you want to delete this post?");
             if(check)
             {
                 API.deletePost(id)
@@ -136,6 +136,7 @@ class Profile2 extends React.Component {
         src="https://widget.cloudinary.com/v2.0/global/all.js"
         type="text/javascript"
       ></script> */}
+      
     </div>
     </div>
         )

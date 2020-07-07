@@ -65,6 +65,14 @@ router.get('/profile/:id', function(req, res) {
   });
 });
 
+router.put("/updateEmail/:email", function(req, res) {
+  console.log("update email hit");
+  db.User.getUserByEmail(req.params.email)
+    .then(res => {
+      console.log("god help me: ", res.data);
+    })
+})
+
 router.get("/user/:email", function(req, res) {
   console.log("id hit");
   console.log(req.params.email);
