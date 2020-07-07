@@ -17,15 +17,15 @@ function NavSignedIn() {
       </Menu.Item>
       <Menu.Item active={location.pathname === "/profile" ? "true" : ""}>
         <Link to="/profile">Profile</Link>
-      </Menu.Item>
+      </Menu.Item>{/* 
       <Menu.Item active={location.pathname === "/following" ? "true" : ""}>
         <Link to="/following">Following</Link>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item active={location.pathname === "/post" ? "true" : ""}>
         <Link to="/post">Post</Link>
       </Menu.Item>
       <Menu.Item active={location.pathname === "/" ? "true" : ""}>
-        <Link style={{marginLeft: "1151px"}} onClick={clearName} to="/">Logout</Link>
+        <Link style={{marginLeft: "1255px"}} onClick={clearName} to="/">Logout</Link>
       </Menu.Item>
     </Menu>
   );

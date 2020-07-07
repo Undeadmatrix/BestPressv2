@@ -39,6 +39,7 @@ import { Col, Row, Container } from "../components/Grid";
 import NavSignedIn from "../components/NavSignedIn";
 import API from "../utils/API";
 import passport from "passport";
+import { TextArea } from "semantic-ui-react";
 
 class Form extends Component {
     state = {
@@ -91,25 +92,34 @@ class Form extends Component {
             <NavSignedIn />
             <Row>
               <Col size="md-6 sm-12">
+                <div className="ui container">
                 <form className="form">
                   <h3>Title</h3>
-                  <input
+                  <textarea
                     value={this.state.title}
                     name="title"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="Title"
+                    rows="1"
+                    cols="70"
                   />
                   <h3>Body</h3>
-                  <input
+                  <textarea
                     value={this.state.body}
                     name="body"
                     onChange={this.handleInputChange}
                     type="text"
                     placeholder="Body"
+                    rows="6"
+                    cols="70"
                   />
+                  <br />
+                  <br />
+                  <br />
                   <button onClick={this.handleFormSubmit}>Submit</button>
                 </form>
+                </div>
               </Col>
             </Row>
           </Container>
