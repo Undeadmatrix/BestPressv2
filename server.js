@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Serve up static assets (usually on heroku)
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("client/build"));
-// }
+ if (process.env.NODE_ENV === "production") {
+   app.use(express.static("client/build"));
+ }
 
 // Initialize passport
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
@@ -31,7 +31,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 
-mongoose.connect("mongodb://devtest:devtest123@ds241288.mlab.com:41288/heroku_516l31j8" || "mongodb://localhost/bestpress", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bestpress", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
