@@ -19,7 +19,9 @@ import {
 class Login extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    firstName: "",
+    lastName: ""
   };
 
   componentDidUpdate() {}
@@ -39,7 +41,7 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log("handleSubmit / axios.post.login");
-    const { email, password } = this.state;
+    const { email, password, firstName, lastName } = this.state;
     console.log(this.state);
     //query database
     const user = { email, password };
@@ -49,6 +51,7 @@ class Login extends Component {
       .post("/api/users/login", user)
       .then((res) => {
         console.log("axios.post reached");
+        console.log("res.data: ",res.data)
         console.log(
           "res.data email, password ",
           res.data.email,
@@ -56,6 +59,10 @@ class Login extends Component {
         );
         if (!res.data.err) {
           console.log("No errors");
+          var fullName = `${res.data.firstName} ${res.data.lastName}`;
+          localStorage.setItem("loginToken", fullName);
+          localStorage.setItem("userEmail", res.data.email);
+          localStorage.setItem("isLoggedIn", true);
           window.location.replace("/home");
         } else {
           console.log(res.data.err);

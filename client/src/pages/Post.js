@@ -75,6 +75,16 @@ class Form extends Component {
       };
 
       render() {
+        const loggedIn = localStorage.getItem("isLoggedIn")
+        console.log(loggedIn);
+        if(!loggedIn)
+        {
+          alert("you need to log in");
+          window.location.replace("/");
+        }
+        else{
+
+        
         // Notice how each input has a `value`, `name`, and `onChange` prop
         return (
           <Container>
@@ -104,6 +114,7 @@ class Form extends Component {
             </Row>
           </Container>
         );
+      }
       }
 }
 

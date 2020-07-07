@@ -3,6 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu } from "semantic-ui-react"
 import { left } from "inquirer/lib/utils/readline";
 
+const clearName =() => {
+  console.log("clearName called");
+  localStorage.clear();
+}
+
 function NavSignedIn() {
   const location = useLocation();
   return (
@@ -20,7 +25,7 @@ function NavSignedIn() {
         <Link to="/post">Post</Link>
       </Menu.Item>
       <Menu.Item active={location.pathname === "/" ? "true" : ""}>
-        <Link style={{marginLeft: "1151px"}}to="/">Logout</Link>
+        <Link style={{marginLeft: "1151px"}} onClick={clearName} to="/">Logout</Link>
       </Menu.Item>
     </Menu>
   );

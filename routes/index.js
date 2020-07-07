@@ -14,7 +14,7 @@ router.get("/logout", function (req, res) {
   });
 // If no API routes are hit, send the React app
  router.use(function(req, res) {
-   res.sendFile(path.join(__dirname, "../client/public/index.html"));
+   res.sendFile(path.join(__dirname, "../client/src/index.html"));
  });
 
 module.exports = router;

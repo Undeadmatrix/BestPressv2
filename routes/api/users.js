@@ -53,13 +53,34 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   });
 });
 
-/* router.get("/:id", function(req, res) {
+router.get('/profile/:id', function(req, res) {
+  console.log("profile posts hit");
+  console.log("req.params: ", req.params);
+  db.Post.find({"postedBy":req.params.id}, (err, posts) => {
+     if(err) {
+       console.log(err);
+     } else {
+       res.send(posts);
+     }
+  });
+});
+
+router.put("/updateEmail/:email", function(req, res) {
+  console.log("update email hit");
+  db.User.getUserByEmail(req.params.email)
+    .then(res => {
+      console.log("god help me: ", res.data);
+    })
+})
+
+router.get("/user/:email", function(req, res) {
   console.log("id hit");
+  console.log(req.params.email);
   db.User
-      .findById(req.params.id)
+      .getUserByEmail(req.params.email)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
-}) */
+});
 /* router
   .route("/")
   .post(userController.create)
