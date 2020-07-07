@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import NavSignedIn from "../components/NavSignedIn";
-import Axios from "axios";
-//import { post } from "../../../routes";
 
 function Home() {
     const [posts, setPosts] = useState([])
@@ -38,12 +34,6 @@ function Home() {
           })
           .catch(err => console.log(err));
       };
-
-      function deletePost(id) {
-        API.deletePost(id)
-          .then(res => loadPosts())
-          .catch(err => console.log(err));
-      }
 
       const loggedIn = localStorage.getItem("isLoggedIn")
       console.log(loggedIn);
@@ -78,7 +68,6 @@ function Home() {
                                     </strong>
                                     <br />
                                     <h4>{post.body}</h4>
-                                <DeleteBtn onClick={() => deletePost(post._id)} />
                                 <br />
                             </ListItem>
                         ))}

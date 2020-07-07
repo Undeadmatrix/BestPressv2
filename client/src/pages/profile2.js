@@ -51,19 +51,31 @@ class Profile2 extends React.Component {
 
     
     render() {
+
         function formatDate(date) {
             console.log("format date reached");
             const moment = require("moment");
             const formattedDate = moment(date).format("YYYY-MM-DD");
             return formattedDate;
         }
+
         function deletePost(id) {
-            API.deletePost(id)
+            var check = window.confirm("are you sure you want to delete this post?");
+            if(check)
+            {
+                API.deletePost(id)
               .then(res => this.setState({
                   posts: res.data
               }))
               .catch(err => console.log(err));
+              window.location.replace("/profile")
+            }
+            else
+            {
+                return;
+            }
           }
+
         const loggedIn = localStorage.getItem("isLoggedIn")
         console.log(loggedIn);
         if(!loggedIn)
@@ -78,6 +90,7 @@ class Profile2 extends React.Component {
       <NavSignedIn />
     <div className="ui container">
         <h1>{this.state.firstName} {this.state.lastName}'s Profile Page</h1>
+        <h2>Posts</h2>
         {this.state.posts.length ? (
                             <List>
                         {this.state.posts.slice(0).reverse().map(post => (
