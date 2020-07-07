@@ -61,6 +61,8 @@ class Login extends Component {
           console.log("No errors");
           var fullName = `${res.data.firstName} ${res.data.lastName}`;
           localStorage.setItem("loginToken", fullName);
+          localStorage.setItem("userEmail", res.data.email);
+          localStorage.setItem("isLoggedIn", true);
           window.location.replace("/home");
         } else {
           console.log(res.data.err);

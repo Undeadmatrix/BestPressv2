@@ -11,7 +11,7 @@ import Axios from "axios";
 
 function Home() {
     const [posts, setPosts] = useState([])
-
+    //let [ loggedIn, setLoggedIn ] = useState([])
 
     useEffect(() => {
         loadPosts()
@@ -45,53 +45,64 @@ function Home() {
           .catch(err => console.log(err));
       }
 
-    return (
-        <Container fluid>
-            <NavSignedIn />
-            <Row>
-                <Col size="md-6">
-                    <Jumbotron>
-                        <h1>Welcome, {localStorage.getItem("loginToken")}</h1>
-                    </Jumbotron>
-                </Col>
-                <Col size="md-6 sm-12">
-                    <Jumbotron>
-                        <h1>Posts</h1>
-                    </Jumbotron>
-                    {posts.length ? (
-                        <List>
-                    {posts.slice(0).reverse().map(post => (
-                        <ListItem key={post._id}>
-                            <br />
-                                <strong>
-                                    <h2>{post.title} by {post.author}</h2>
-                                    <p>{formatDate(post.dateCreated)}</p>
-                                </strong>
+      const loggedIn = localStorage.getItem("isLoggedIn")
+      console.log(loggedIn);
+      if(!loggedIn)
+      {
+          alert("you need to log in");
+          window.location.replace("/");
+      }
+      else {
+          
+          return (
+            <Container fluid>
+                <NavSignedIn />
+                <Row>
+                    <Col size="md-6">
+                        <Jumbotron>
+                            <h1>Welcome, {localStorage.getItem("loginToken")}</h1>
+                        </Jumbotron>
+                    </Col>
+                    <Col size="md-6 sm-12">
+                        <Jumbotron>
+                            <h1>Posts</h1>
+                        </Jumbotron>
+                        {posts.length ? (
+                            <List>
+                        {posts.slice(0).reverse().map(post => (
+                            <ListItem key={post._id}>
                                 <br />
-                                <h4>{post.body}</h4>
-                            <DeleteBtn onClick={() => deletePost(post._id)} />
-                            <br />
-                        </ListItem>
-                    ))}
-                    </List>
-                    
-                    ) : (
-                        <h3>No Results to Display</h3>
-                      )
-                      
-                      }
-                </Col>
-            </Row>
-            <div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-            </div>
-        </Container>
-    );
+                                    <strong>
+                                        <h2>{post.title} by {post.author}</h2>
+                                        <p>{formatDate(post.dateCreated)}</p>
+                                    </strong>
+                                    <br />
+                                    <h4>{post.body}</h4>
+                                <DeleteBtn onClick={() => deletePost(post._id)} />
+                                <br />
+                            </ListItem>
+                        ))}
+                        </List>
+                        
+                        ) : (
+                            <h3>No Results to Display</h3>
+                          )
+                          
+                          }
+                    </Col>
+                </Row>
+                <div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </Container>
+        );
+      }
+    
 }
 
 export default Home;

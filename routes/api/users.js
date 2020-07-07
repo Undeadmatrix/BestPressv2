@@ -53,13 +53,14 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   });
 });
 
-/* router.get("/:id", function(req, res) {
+router.get("/user/:id", function(req, res) {
   console.log("id hit");
+  console.log(req.data);
   db.User
-      .findById(req.params.id)
+      .findByEmail(req.params.email)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
-}) */
+});
 /* router
   .route("/")
   .post(userController.create)
