@@ -15,9 +15,19 @@ class Profile2 extends React.Component {
         const userEmail = localStorage.getItem("userEmail");
         this.setState({
             email: userEmail
+        }, () => {
+            console.log(this.state.email);
+            API.getUser(this.state.email)
+            .then(data => {
+                console.log("data: ",data);
+                this.setState({
+                    firstName: data.data.firstName,
+                    lastName: data.data.lastName,
+                })
+                console.log("firstName: ", this.state.firstName);
+                console.log("lastName: ", this.state.lastName);
+            })
         })
-        console.log(this.state.email);
-        //this.getUserInfo();
     }
     
     getUserInfo = () => {

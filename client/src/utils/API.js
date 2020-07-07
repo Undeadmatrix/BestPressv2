@@ -17,7 +17,8 @@ export default {
   savePost: function(postData) {
     return axios.post("/api/users/posts", postData);
   },
-  getUser: function(id) {
-    return axios.get("/api/users/user/" + id);
+  getUser: function(email) {
+    console.log("API EMAIL: ",email);
+    return axios.get("/api/users/user/" + email);
   }
 };

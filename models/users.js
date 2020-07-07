@@ -49,10 +49,10 @@ module.exports.createUser = function (newUser, callback) {
   });
 };
 module.exports.getUserByEmail = function (email, callback) {
-  //console.log("getUserByEmail", email)
+  console.log("getUserByEmail", email)
   var query = { email: email };
-  //console.log(query);
-  User.findOne(query, callback);
+  console.log(query);
+  return User.findOne(query, callback);
 };
 module.exports.getUserById = function (id, callback) {
   //console.log("getUserById", id);
