@@ -31,7 +31,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bestpress", {
+mongoose.connect("mongodb://devtest:devtest123@ds241288.mlab.com:41288/heroku_516l31j8" || "mongodb://localhost/bestpress", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
