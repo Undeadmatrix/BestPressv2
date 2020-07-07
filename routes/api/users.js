@@ -53,9 +53,20 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
   });
 });
 
+router.get('/profile/:id', function(req, res) {
+  console.log("profile posts hit");
+  console.log("req.params: ", req.params);
+  db.Post.find({"postedBy":req.params.id}, (err, posts) => {
+     if(err) {
+       console.log(err);
+     } else {
+       res.send(posts);
+     }
+  });
+});
+
 router.get("/user/:email", function(req, res) {
   console.log("id hit");
-  console.log(req.data);
   console.log(req.params.email);
   db.User
       .getUserByEmail(req.params.email)

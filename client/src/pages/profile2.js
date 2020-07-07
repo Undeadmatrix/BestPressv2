@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import API from "../utils/API";
 import NavSignedIn from "../components/NavSignedIn";
+import DeleteBtn from "../components/DeleteBtn";
+import { List, ListItem } from "../components/List";
 
 
 
@@ -10,7 +12,8 @@ class Profile2 extends React.Component {
         firstName: "",
         lastName: "",
         email: "",
-        id: ""
+        id: "",
+        posts: [],
     }
 
     componentDidMount() {
@@ -25,10 +28,19 @@ class Profile2 extends React.Component {
                 this.setState({
                     firstName: data.data.firstName,
                     lastName: data.data.lastName,
+                    id: data.data._id
                 })
                 console.log("firstName: ", this.state.firstName);
                 console.log("lastName: ", this.state.lastName);
+                console.log("id: ", this.state.id);
+                API.getPostsByUser(this.state.id)
+                .then(res => {
+                    this.setState({
+                    posts: res.data
+                })
             })
+            })
+            
         })
     }
     
@@ -37,12 +49,57 @@ class Profile2 extends React.Component {
         .then()
     }
 
+    
     render() {
+        function formatDate(date) {
+            console.log("format date reached");
+            const moment = require("moment");
+            const formattedDate = moment(date).format("YYYY-MM-DD");
+            return formattedDate;
+        }
+        function deletePost(id) {
+            API.deletePost(id)
+              .then(res => this.setState({
+                  posts: res.data
+              }))
+              .catch(err => console.log(err));
+          }
+        const loggedIn = localStorage.getItem("isLoggedIn")
+        console.log(loggedIn);
+        if(!loggedIn)
+        {
+          alert("you need to log in");
+          window.location.replace("/");
+        }
+        else {
+
         return(
             <div>
       <NavSignedIn />
     <div className="ui container">
         <h1>{this.state.firstName} {this.state.lastName}'s Profile Page</h1>
+        {this.state.posts.length ? (
+                            <List>
+                        {this.state.posts.slice(0).reverse().map(post => (
+                            <ListItem key={post._id}>
+                                <br />
+                                    <strong>
+                                        <h2>{post.title} by {post.author}</h2>
+                                        <p>{formatDate(post.dateCreated)}</p>
+                                    </strong>
+                                    <br />
+                                    <h4>{post.body}</h4>
+                                <DeleteBtn onClick={() => deletePost(post._id)} />
+                                <br />
+                            </ListItem>
+                        ))}
+                        </List>
+                        
+                        ) : (
+                            <h3>No Results to Display</h3>
+                          )
+                          
+                          }
       {/* <h1 className="center red-text">Profile Image Upload</h1>
       <div className="file-field input-field">
         <div className="button">
@@ -69,6 +126,7 @@ class Profile2 extends React.Component {
     </div>
     </div>
         )
+    }
     }
 }
 

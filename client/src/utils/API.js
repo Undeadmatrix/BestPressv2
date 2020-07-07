@@ -20,5 +20,9 @@ export default {
   getUser: function(email) {
     console.log("API EMAIL: ",email);
     return axios.get("/api/users/user/" + email);
+  },
+  getPostsByUser: function(id) {
+    console.log("getPostsByUser: ", id);
+    return axios.get("/api/users/profile/" + id);
   }
 };
