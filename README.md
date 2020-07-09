@@ -22,7 +22,7 @@ npm install
  npm start
  ```
  
- An alternative is to view the project in browser through our [deployed link](#).
+ An alternative is to view the project in browser through our [deployed link](https://bestpressv2.herokuapp.com/).
 ## Tech
 This project uses the following technologies:
 * Node.JS
