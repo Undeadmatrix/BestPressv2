@@ -8,13 +8,25 @@ import "./css/profile.css";
 
 
 class Profile2 extends React.Component {
-    state = {
-        firstName: "",
+  constructor(props){
+    super(props);
+    this.state = {
+      firstName: "",
         lastName: "",
         email: "",
         id: "",
         posts: [],
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.testFunc = this.testFunc.bind(this);
+  }
+    /* state = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        id: "",
+        posts: [],
+    } */
 
     componentDidMount() {
         const userEmail = localStorage.getItem("userEmail");
@@ -43,6 +55,22 @@ class Profile2 extends React.Component {
             
         })
     }
+
+    handleChange(event) {
+      this.setState({firstName: event.target.value});
+    }
+
+    testFunc(event) {
+      event.preventDefault();
+      console.log(this.state);
+      let newFirst = this.state.firstName;
+      console.log("new: " + newFirst);
+      API.getUser(this.state.email)
+      .then(data => {
+        API.updateFirstName(newFirst, this.state.email)
+      })
+    }
+    
     
     getUserInfo = () => {
         API.getUser()
@@ -112,7 +140,9 @@ class Profile2 extends React.Component {
                             <h3>No Results to Display</h3>
                           )
                           
-                          }
+                        }
+
+            
       {/* <h1 className="center red-text">Profile Image Upload</h1>
       <div className="file-field input-field">
         <div className="button">
@@ -138,6 +168,21 @@ class Profile2 extends React.Component {
       ></script> */}
       
     </div>
+    <br />
+    <br />
+    <br />
+      <div className="ui container">
+
+      <form>
+        <label>
+          Change your first name:
+          <input type="text" value={this.state.firstName} onChange={this.handleChange}/>
+        </label>
+
+        <input type="submit" value="Submit" onClick={this.testFunc} />
+      </form>
+
+      </div>
     </div>
         )
     }

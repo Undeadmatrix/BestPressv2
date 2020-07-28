@@ -27,5 +27,8 @@ export default {
   },
   updateUserEmail: function(email) {
     return axios.put("/api/users/updateEmail/" + email);
+  },
+  updateFirstName: function(first, email) {
+    return axios.put("/api/users/updateFirst/" + first + "/" + email);
   }
 };

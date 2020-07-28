@@ -73,6 +73,14 @@ router.put("/updateEmail/:email", function(req, res) {
     })
 })
 
+router.put("/updateFirst/:first/:email", function(req, res) {
+  console.log("update first hit");
+  db.User.getUserByEmail(req.params.email)
+    .then(res => {
+      console.log("updateFirst res: " + res);
+    })
+})
+
 router.get("/user/:email", function(req, res) {
   console.log("id hit");
   console.log(req.params.email);
