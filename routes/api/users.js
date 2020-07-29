@@ -76,12 +76,12 @@ router.put("/updateEmail/:email", function(req, res) {
 router.post("/updateFirst/:first/:email", function(req, res) {
   console.log("------------update first hit------------");
   db.User.getUserByEmail(req.params.email)
-    .then(res => {
-      console.log("updateFirst res: " + res);
+    .then(response => {
+      console.log("updateFirst res: " + response);
       console.log("first name to change: " + req.params.first);
-      db.User.updateOne(
+      db.User.update(
         {
-          _id: res._id
+          _id: response._id
         },
         {
           $set: {
