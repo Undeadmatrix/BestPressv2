@@ -73,12 +73,31 @@ router.put("/updateEmail/:email", function(req, res) {
     })
 })
 
-router.put("/updateFirst/:first/:email", function(req, res) {
-  console.log("update first hit");
+router.post("/updateFirst/:first/:email", function(req, res) {
+  console.log("------------update first hit------------");
   db.User.getUserByEmail(req.params.email)
     .then(res => {
       console.log("updateFirst res: " + res);
-    })
+      console.log("first name to change: " + req.params.first);
+      db.User.updateOne(
+        {
+          _id: res._id
+        },
+        {
+          $set: {
+            firstName: req.params.first,
+            modified: Date.now()
+          }
+        },
+        (error, data) => {
+          if(error) {
+            res.send(error);
+          } else {
+            res.send(data);
+          }
+        }
+      );
+    });
 })
 
 router.get("/user/:email", function(req, res) {
