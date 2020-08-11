@@ -25,7 +25,13 @@ export default {
     console.log("getPostsByUser: ", id);
     return axios.get("/api/users/profile/" + id);
   },
-  updateUserEmail: function(email) {
-    return axios.put("/api/users/updateEmail/" + email);
+  updateUserEmail: function(newEmail, email) {
+    return axios.put("/api/users/updateEmail/" + newEmail, + "/" + email);
+  },
+  updateFirstName: function(first, email) {
+    return axios.post("/api/users/updateFirst/" + first + "/" + email);
+  },
+  updateLastName: function(last, email) {
+    return axios.post("/api/users/updateLast/" + last + "/" + email);
   }
 };

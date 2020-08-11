@@ -65,12 +65,85 @@ router.get('/profile/:id', function(req, res) {
   });
 });
 
-router.put("/updateEmail/:email", function(req, res) {
-  console.log("update email hit");
+router.post("/updateUserEmail/:newEmail/:email", function(req, res) {
+  console.log("------------update email hit------------");
   db.User.getUserByEmail(req.params.email)
-    .then(res => {
-      console.log("god help me: ", res.data);
-    })
+    .then(response => {
+      console.log("updateFirst res: " + response);
+      console.log("email to change: " + req.params.newEmail);
+      db.User.update(
+        {
+          _id: response._id
+        },
+        {
+          $set: {
+            email: req.params.newEmail,
+            modified: Date.now()
+          }
+        },
+        (error, data) => {
+          if(error) {
+            res.send(error);
+          } else {
+            res.send(data);
+          }
+        }
+      );
+    });
+})
+
+router.post("/updateFirst/:first/:email", function(req, res) {
+  console.log("------------update first hit------------");
+  db.User.getUserByEmail(req.params.email)
+    .then(response => {
+      console.log("updateFirst res: " + response);
+      console.log("first name to change: " + req.params.first);
+      db.User.update(
+        {
+          _id: response._id
+        },
+        {
+          $set: {
+            firstName: req.params.first,
+            modified: Date.now()
+          }
+        },
+        (error, data) => {
+          if(error) {
+            res.send(error);
+          } else {
+            res.send(data);
+          }
+        }
+      );
+    });
+})
+
+router.post("/updateLast/:last/:email", function(req, res) {
+  console.log("------------update last hit------------");
+  db.User.getUserByEmail(req.params.email)
+    .then(response => {
+      console.log("updateLast res: " + response);
+      console.log("last name to change: " + req.params.last);
+      db.User.update(
+        {
+          _id: response._id
+        },
+        {
+          $set: {
+            lastName: req.params.last,
+            modified: Date.now()
+          }
+        },
+        (error, data) => {
+          if(error) {
+            res.send(error);
+          } else {
+            res.send(data);
+          }
+        }
+      );
+    });
 })
 
 router.get("/user/:email", function(req, res) {
