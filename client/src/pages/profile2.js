@@ -11,14 +11,19 @@ class Profile2 extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      firstName: "",
+        firstName: "",
         lastName: "",
         email: "",
         id: "",
         posts: [],
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.testFunc = this.testFunc.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
+
+    this.changeFirstName = this.changeFirstName.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changeLastName = this.changeLastName.bind(this);
   }
     /* state = {
         firstName: "",
@@ -56,19 +61,53 @@ class Profile2 extends React.Component {
         })
     }
 
-    handleChange(event) {
+    handleFirstNameChange(event) {
       this.setState({firstName: event.target.value});
     }
 
-    testFunc(event) {
+    handleLastNameChange(event) {
+      this.setState({lastName: event.target.value});
+    }
+
+    handleEmailChange(event) {
+      this.setState({email: event.target.value});
+    }
+
+    changeFirstName(event) {
       event.preventDefault();
       console.log(this.state);
       let newFirst = this.state.firstName;
+      let userEmail = localStorage.getItem("userEmail");
       console.log("new: " + newFirst);
-      API.getUser(this.state.email)
+      API.getUser(userEmail)
       .then(data => {
-        API.updateFirstName(newFirst, this.state.email)
+        API.updateFirstName(newFirst, userEmail)
+      });
+    }
+
+    changeLastName(event) {
+      event.preventDefault();
+      console.log(this.state);
+      let newLast = this.state.lastName;
+      let userEmail = localStorage.getItem("userEmail");
+      console.log("new: " + newLast);
+      API.getUser(userEmail)
+      .then(data => {
+        API.updateLastName(newLast, userEmail)
       })
+    }
+
+    changeEmail(event) {
+      event.preventDefault();
+      console.log(this.state);
+      let newEmail = this.state.email;
+      let userEmail = localStorage.getItem("userEmail");
+      console.log("new: " + newEmail);
+      API.getUser(userEmail)
+      .then(data => {
+        API.updateUserEmail(newEmail, userEmail)
+      })
+      localStorage.setItem("userEmail", newEmail);
     }
     
     
@@ -176,11 +215,29 @@ class Profile2 extends React.Component {
       <form>
         <label>
           Change your first name:
-          <input type="text" value={this.state.firstName} onChange={this.handleChange}/>
+          <input type="text" value={this.state.firstName} onChange={this.handleFirstNameChange}/>
         </label>
 
-        <input type="submit" value="Submit" onClick={this.testFunc} />
+        <input type="submit" value="Submit" onClick={this.changeFirstName} />
       </form>
+      <br />
+      <form>
+        <label>
+          Change your last name:
+          <input type="text" value={this.state.lastName} onChange={this.handleLastNameChange}/>
+        </label>
+
+        <input type="submit" value="Submit" onClick={this.changeLastName} />
+      </form>
+
+      {/* <form>
+        <label>
+          Change your email:
+          <input type="text" value={this.state.email} onChange={this.handleEmailChange}/>
+        </label>
+
+        <input type="submit" value="Submit" onClick={this.changeEmail} />
+      </form> */}
 
       </div>
     </div>
